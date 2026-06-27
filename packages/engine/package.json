@@ -14,16 +14,18 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --coverage",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --coverage",
     "lint": "eslint src/",
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@vyom/plugin-sdk": "workspace:*"
+    "@vyom/plugin-sdk": "*",
+    "better-sqlite3": "^12.11.1"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/jest": "^29.0.0",
     "jest": "^29.0.0",
-    "@types/jest": "^29.0.0"
+    "typescript": "^5.4.0"
   }
 }

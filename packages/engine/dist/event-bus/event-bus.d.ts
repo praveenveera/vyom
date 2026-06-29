@@ -1,4 +1,4 @@
-export interface VyomEvents {
+export interface GarageBuildEvents {
     'workspace.created': {
         workspaceId: string;
         name: string;
@@ -144,14 +144,14 @@ export interface VyomEvents {
     'app.ready': Record<string, never>;
     'app.shutdown': Record<string, never>;
 }
-export type VyomEventName = keyof VyomEvents;
-export type VyomEventPayload<T extends VyomEventName> = VyomEvents[T];
-type EventHandler<T extends VyomEventName> = (payload: VyomEventPayload<T>) => void | Promise<void>;
+export type GarageBuildEventName = keyof GarageBuildEvents;
+export type GarageBuildEventPayload<T extends GarageBuildEventName> = GarageBuildEvents[T];
+type EventHandler<T extends GarageBuildEventName> = (payload: GarageBuildEventPayload<T>) => void | Promise<void>;
 interface EventSubscription {
     unsubscribe: () => void;
 }
 /**
- * The VYOM Event Bus.
+ * The GarageBuild Event Bus.
  *
  * Subsystems use this to communicate without coupling to each other.
  * All events are typed — TypeScript will catch unknown event names and
@@ -176,31 +176,31 @@ export declare class EventBus {
      * registration order. Async handlers are fired and not awaited unless
      * you use emitAsync.
      */
-    emit<T extends VyomEventName>(event: T, payload: VyomEventPayload<T>): void;
+    emit<T extends GarageBuildEventName>(event: T, payload: GarageBuildEventPayload<T>): void;
     /**
      * Emit an event and await all async handlers before returning.
      * Use this when you need to ensure downstream processing is complete.
      */
-    emitAsync<T extends VyomEventName>(event: T, payload: VyomEventPayload<T>): Promise<void>;
+    emitAsync<T extends GarageBuildEventName>(event: T, payload: GarageBuildEventPayload<T>): Promise<void>;
     /**
      * Subscribe to an event. Returns an object with an unsubscribe method.
      */
-    on<T extends VyomEventName>(event: T, handler: EventHandler<T>): EventSubscription;
+    on<T extends GarageBuildEventName>(event: T, handler: EventHandler<T>): EventSubscription;
     /**
      * Subscribe to an event once. The handler is automatically removed
      * after the first invocation.
      */
-    once<T extends VyomEventName>(event: T, handler: EventHandler<T>): EventSubscription;
+    once<T extends GarageBuildEventName>(event: T, handler: EventHandler<T>): EventSubscription;
     /**
      * Remove all handlers for a specific event, or all handlers if no
      * event is specified. Useful for testing and cleanup.
      */
-    removeAllListeners(event?: VyomEventName): void;
+    removeAllListeners(event?: GarageBuildEventName): void;
     /**
      * Return the number of handlers registered for an event.
      * Useful for debugging and testing.
      */
-    listenerCount(event: VyomEventName): number;
+    listenerCount(event: GarageBuildEventName): number;
 }
 export declare const eventBus: EventBus;
 export {};

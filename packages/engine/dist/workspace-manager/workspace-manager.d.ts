@@ -1,3 +1,4 @@
+import Database from 'better-sqlite3';
 export interface Workspace {
     id: string;
     name: string;
@@ -54,7 +55,7 @@ export declare class WorkspaceManager {
     private initialized;
     /**
      * Initialize the workspace manager.
-     * Creates ~/.vyom/ and the SQLite database if they don't exist.
+     * Creates ~/.garagebuild/ and the SQLite database if they don't exist.
      * Creates the default workspace on first run.
      * Emits 'workspace.created' on first run or 'workspace.updated' on subsequent runs.
      */
@@ -95,8 +96,18 @@ export declare class WorkspaceManager {
      */
     removeModelConfig(modelId: string): void;
     /**
+     * Returns a model configuration by ID.
+     * Throws if not found in this workspace.
+     */
+    getModelConfig(modelId: string): ModelConfig;
+    /**
+     * Returns the underlying database connection.
+     * Used by other engine subsystems to share a single connection.
+     */
+    getDb(): Database.Database;
+    /**
      * Closes the database connection.
-     * Call this when VYOM is shutting down.
+     * Call this when GarageBuild is shutting down.
      */
     close(): void;
     private assertInitialized;

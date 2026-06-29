@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — WorkspaceManager
+// GarageBuild Engine — WorkspaceManager
 //
 // The first subsystem to initialise. Owns the root workspace, settings,
 // model configurations and plugin registrations.
@@ -60,7 +60,7 @@ export class WorkspaceManager {
     initialized = false;
     /**
      * Initialize the workspace manager.
-     * Creates ~/.vyom/ and the SQLite database if they don't exist.
+     * Creates ~/.garagebuild/ and the SQLite database if they don't exist.
      * Creates the default workspace on first run.
      * Emits 'workspace.created' on first run or 'workspace.updated' on subsequent runs.
      */
@@ -235,8 +235,30 @@ export class WorkspaceManager {
     }
     // ── Teardown ─────────────────────────────────────────────────────────────────
     /**
+     * Returns a model configuration by ID.
+     * Throws if not found in this workspace.
+     */
+    getModelConfig(modelId) {
+        this.assertInitialized();
+        const row = this.db
+            .prepare('SELECT * FROM model_configs WHERE id = ? AND workspace_id = ?')
+            .get(modelId, this.workspace.id);
+        if (!row) {
+            throw new Error(`Model config not found: ${modelId}`);
+        }
+        return rowToModelConfig(row);
+    }
+    /**
+     * Returns the underlying database connection.
+     * Used by other engine subsystems to share a single connection.
+     */
+    getDb() {
+        this.assertInitialized();
+        return this.db;
+    }
+    /**
      * Closes the database connection.
-     * Call this when VYOM is shutting down.
+     * Call this when GarageBuild is shutting down.
      */
     close() {
         if (this.db) {

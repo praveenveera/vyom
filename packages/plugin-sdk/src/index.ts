@@ -1,4 +1,4 @@
-// VYOM Plugin SDK — Public API
+// GarageBuild Plugin SDK — Public API
 export type {
   HealthStatus, HealthResult,
   PluginType, SandboxTier, PluginManifest,
@@ -15,5 +15,5 @@ export type {
 } from './types.js';
 
 export type {
-  VyomPlugin, ModelPlugin, FrameworkPlugin, DeploymentPlugin, AgentPlugin,
+  GarageBuildPlugin, ModelPlugin, FrameworkPlugin, DeploymentPlugin, AgentPlugin,
 } from './interfaces.js';

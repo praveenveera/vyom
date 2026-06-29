@@ -1,0 +1,32 @@
+{
+  "name": "@garagebuild/cli",
+  "version": "0.1.0",
+  "description": "GarageBuild CLI — command-line interface for the GarageBuild AI development platform",
+  "type": "module",
+  "bin": {
+    "garagebuild": "./dist/cli.js"
+  },
+  "main": "./dist/cli.js",
+  "exports": {
+    ".": {
+      "import": "./dist/cli.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --coverage",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@garagebuild/engine": "*",
+    "@garagebuild/plugin-sdk": "*",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "typescript": "^5.4.0"
+  }
+}

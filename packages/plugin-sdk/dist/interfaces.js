@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Plugin SDK — Plugin Interfaces
+// GarageBuild Plugin SDK — Plugin Interfaces
 // ─────────────────────────────────────────────────────────────────────────────
 export {};
 //# sourceMappingURL=interfaces.js.map

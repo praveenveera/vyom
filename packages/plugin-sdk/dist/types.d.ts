@@ -16,7 +16,7 @@ export interface PluginManifest {
     entry: string;
     configSchema: string;
     capabilities: string[];
-    minVyomVersion: string;
+    minGarageBuildVersion: string;
     sandboxTier: SandboxTier;
 }
 export interface ConfigField {
@@ -154,7 +154,7 @@ export interface DeployResult {
 }
 export type DeployStatus = 'pending' | 'building' | 'deployed' | 'failed';
 export type AgentCapability = 'code_generation' | 'code_review' | 'test_writing' | 'refactoring' | 'documentation';
-export type TaskType = 'generate' | 'review' | 'test' | 'refactor' | 'explain';
+export type TaskType = 'chat' | 'generate' | 'review' | 'test' | 'refactor' | 'explain';
 export interface AgentTask {
     type: TaskType;
     description: string;

@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — Database
+// GarageBuild Engine — Database
 //
-// Sets up the SQLite database at ~/.vyom/data/vyom.db
+// Sets up the SQLite database at ~/.garagebuild/data/garagebuild.db
 // All schema changes must be versioned migrations.
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -12,16 +12,16 @@ import { join } from 'path';
 
 // ── Paths ─────────────────────────────────────────────────────────────────────
 
-export function getVyomDir(): string {
-  return join(homedir(), '.vyom');
+export function getGarageBuildDir(): string {
+  return join(homedir(), '.garagebuild');
 }
 
 export function getDataDir(): string {
-  return join(getVyomDir(), 'data');
+  return join(getGarageBuildDir(), 'data');
 }
 
 export function getDatabasePath(): string {
-  return join(getDataDir(), 'vyom.db');
+  return join(getDataDir(), 'garagebuild.db');
 }
 
 // ── Schema ────────────────────────────────────────────────────────────────────
@@ -136,8 +136,8 @@ const CREATE_TABLES = `
 // ── Database initialisation ───────────────────────────────────────────────────
 
 /**
- * Initialises the VYOM database.
- * Creates ~/.vyom/data/ if it doesn't exist.
+ * Initialises the GarageBuild database.
+ * Creates ~/.garagebuild/data/ if it doesn't exist.
  * Runs schema migrations if needed.
  * Returns an open database connection.
  */

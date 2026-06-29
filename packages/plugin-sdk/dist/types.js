@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Plugin SDK — Core Types
+// GarageBuild Plugin SDK — Core Types
 // ─────────────────────────────────────────────────────────────────────────────
 export {};
 //# sourceMappingURL=types.js.map

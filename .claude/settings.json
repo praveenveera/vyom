@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "case \"$CLAUDE_TOOL_INPUT_FILE_PATH\" in *.ts) cd /Users/praveenveera/Documents/work-offline/project-garagebuild && npm run build --workspace=packages/engine 2>&1 | grep -E 'error TS[0-9]+' | head -8 && echo '' || true ;; esac"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd /Users/praveenveera/Documents/work-offline/project-garagebuild && git diff --stat HEAD 2>/dev/null | tail -1"
+          }
+        ]
+      }
+    ]
+  }
+}

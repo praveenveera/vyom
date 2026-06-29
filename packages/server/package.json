@@ -1,0 +1,39 @@
+{
+  "name": "@garagebuild/server",
+  "version": "0.1.0",
+  "description": "GarageBuild REST API server — HTTP interface to the GarageBuild engine",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "garagebuild-server": "./dist/server.js"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/server.js",
+    "test": "node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --coverage",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@garagebuild/engine": "*",
+    "@garagebuild/plugin-sdk": "*",
+    "@garagebuild/plugin-openai": "*",
+    "@garagebuild/plugin-anthropic": "*",
+    "@garagebuild/plugin-ollama": "*",
+    "fastify": "^4.28.1",
+    "@fastify/cors": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.0.0",
+    "typescript": "^5.4.0"
+  }
+}

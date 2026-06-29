@@ -1,12 +1,12 @@
 import type { HealthResult, PluginManifest, ConfigSchema, PluginConfig, ChatRequest, ChatResponse, ChatChunk, CostEstimate, ModelInfo, ModelDescriptor, ProjectOptions, ProjectScaffold, Project, ValidationResult, GeneratedFile, ComponentSpec, PageSpec, DevServer, BuildResult, DeployConfig, DeployResult, DeployStatus, AgentTask, AgentResult, AgentChunk, AgentCapability, TaskType } from './types.js';
-export interface VyomPlugin {
+export interface GarageBuildPlugin {
     /**
      * Called once when the plugin is loaded. Use this to establish connections,
      * validate configuration and prepare internal state.
      */
     initialize(config: PluginConfig): Promise<void>;
     /**
-     * Called when the plugin is unloaded or VYOM is shutting down.
+     * Called when the plugin is unloaded or GarageBuild is shutting down.
      * Clean up connections, timers and any other resources.
      */
     teardown(): Promise<void>;
@@ -17,16 +17,16 @@ export interface VyomPlugin {
     healthCheck(): Promise<HealthResult>;
     /**
      * Returns the plugin's manifest — the static metadata declared in
-     * vyom-plugin.json. Must return the same value every call.
+     * garagebuild-plugin.json. Must return the same value every call.
      */
     getManifest(): PluginManifest;
     /**
      * Returns the JSON schema describing the configuration fields this plugin
-     * requires. VYOM uses this to auto-generate the settings UI.
+     * requires. GarageBuild uses this to auto-generate the settings UI.
      */
     getConfigSchema(): ConfigSchema;
 }
-export interface ModelPlugin extends VyomPlugin {
+export interface ModelPlugin extends GarageBuildPlugin {
     /**
      * Send a chat request and return the complete response.
      * The plugin is responsible for translating to/from the provider's format.
@@ -58,7 +58,7 @@ export interface ModelPlugin extends VyomPlugin {
      */
     listAvailableModels(): Promise<ModelDescriptor[]>;
 }
-export interface FrameworkPlugin extends VyomPlugin {
+export interface FrameworkPlugin extends GarageBuildPlugin {
     /**
      * Scaffold a new project. Creates all necessary files and returns
      * the list of generated files plus install/dev commands.
@@ -98,7 +98,7 @@ export interface FrameworkPlugin extends VyomPlugin {
      */
     generateDockerfile(project: Project): Promise<string>;
 }
-export interface DeploymentPlugin extends VyomPlugin {
+export interface DeploymentPlugin extends GarageBuildPlugin {
     /**
      * Deploy the project to the configured target.
      */
@@ -124,7 +124,7 @@ export interface DeploymentPlugin extends VyomPlugin {
      */
     generateManifests(project: Project): Promise<GeneratedFile[]>;
 }
-export interface AgentPlugin extends VyomPlugin {
+export interface AgentPlugin extends GarageBuildPlugin {
     /**
      * Execute an agent task and return the complete result.
      */

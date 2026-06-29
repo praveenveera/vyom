@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — Database
+// GarageBuild Engine — Database
 //
-// Sets up the SQLite database at ~/.vyom/data/vyom.db
+// Sets up the SQLite database at ~/.garagebuild/data/garagebuild.db
 // All schema changes must be versioned migrations.
 // ─────────────────────────────────────────────────────────────────────────────
 import Database from 'better-sqlite3';
@@ -9,14 +9,14 @@ import { existsSync, mkdirSync } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
 // ── Paths ─────────────────────────────────────────────────────────────────────
-export function getVyomDir() {
-    return join(homedir(), '.vyom');
+export function getGarageBuildDir() {
+    return join(homedir(), '.garagebuild');
 }
 export function getDataDir() {
-    return join(getVyomDir(), 'data');
+    return join(getGarageBuildDir(), 'data');
 }
 export function getDatabasePath() {
-    return join(getDataDir(), 'vyom.db');
+    return join(getDataDir(), 'garagebuild.db');
 }
 // ── Schema ────────────────────────────────────────────────────────────────────
 const SCHEMA_VERSION = 1;
@@ -126,8 +126,8 @@ const CREATE_TABLES = `
 `;
 // ── Database initialisation ───────────────────────────────────────────────────
 /**
- * Initialises the VYOM database.
- * Creates ~/.vyom/data/ if it doesn't exist.
+ * Initialises the GarageBuild database.
+ * Creates ~/.garagebuild/data/ if it doesn't exist.
  * Runs schema migrations if needed.
  * Returns an open database connection.
  */

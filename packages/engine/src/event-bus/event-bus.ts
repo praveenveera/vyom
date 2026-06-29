@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — Event Bus
+// GarageBuild Engine — Event Bus
 //
 // The internal nervous system. All subsystems communicate through events.
 // No subsystem ever calls another subsystem directly.
@@ -11,10 +11,10 @@
 
 // ── Event Catalogue ───────────────────────────────────────────────────────────
 //
-// Every event emitted in VYOM is declared here with its payload type.
+// Every event emitted in GarageBuild is declared here with its payload type.
 // This gives full type safety across the entire event system.
 
-export interface VyomEvents {
+export interface GarageBuildEvents {
   // Workspace
   'workspace.created': { workspaceId: string; name: string };
   'workspace.updated': { workspaceId: string };
@@ -83,10 +83,10 @@ export interface VyomEvents {
   'app.shutdown': Record<string, never>;
 }
 
-export type VyomEventName = keyof VyomEvents;
-export type VyomEventPayload<T extends VyomEventName> = VyomEvents[T];
+export type GarageBuildEventName = keyof GarageBuildEvents;
+export type GarageBuildEventPayload<T extends GarageBuildEventName> = GarageBuildEvents[T];
 
-type EventHandler<T extends VyomEventName> = (payload: VyomEventPayload<T>) => void | Promise<void>;
+type EventHandler<T extends GarageBuildEventName> = (payload: GarageBuildEventPayload<T>) => void | Promise<void>;
 
 interface EventSubscription {
   unsubscribe: () => void;
@@ -95,7 +95,7 @@ interface EventSubscription {
 // ── Event Bus ─────────────────────────────────────────────────────────────────
 
 /**
- * The VYOM Event Bus.
+ * The GarageBuild Event Bus.
  *
  * Subsystems use this to communicate without coupling to each other.
  * All events are typed — TypeScript will catch unknown event names and
@@ -113,20 +113,20 @@ interface EventSubscription {
  *   bus.once('app.ready', () => { ... });
  */
 export class EventBus {
-  private readonly handlers = new Map<string, Set<EventHandler<VyomEventName>>>();
-  private readonly onceHandlers = new Map<string, Set<EventHandler<VyomEventName>>>();
+  private readonly handlers = new Map<string, Set<EventHandler<GarageBuildEventName>>>();
+  private readonly onceHandlers = new Map<string, Set<EventHandler<GarageBuildEventName>>>();
 
   /**
    * Emit an event. All registered handlers are called synchronously in
    * registration order. Async handlers are fired and not awaited unless
    * you use emitAsync.
    */
-  emit<T extends VyomEventName>(event: T, payload: VyomEventPayload<T>): void {
+  emit<T extends GarageBuildEventName>(event: T, payload: GarageBuildEventPayload<T>): void {
     const handlers = this.handlers.get(event);
     if (handlers) {
       for (const handler of handlers) {
         try {
-          handler(payload as VyomEventPayload<VyomEventName>);
+          handler(payload as GarageBuildEventPayload<GarageBuildEventName>);
         } catch (err) {
           console.error(`[EventBus] Error in handler for "${event}":`, err);
         }
@@ -137,7 +137,7 @@ export class EventBus {
     if (onceHandlers) {
       for (const handler of onceHandlers) {
         try {
-          handler(payload as VyomEventPayload<VyomEventName>);
+          handler(payload as GarageBuildEventPayload<GarageBuildEventName>);
         } catch (err) {
           console.error(`[EventBus] Error in once-handler for "${event}":`, err);
         }
@@ -150,13 +150,13 @@ export class EventBus {
    * Emit an event and await all async handlers before returning.
    * Use this when you need to ensure downstream processing is complete.
    */
-  async emitAsync<T extends VyomEventName>(event: T, payload: VyomEventPayload<T>): Promise<void> {
+  async emitAsync<T extends GarageBuildEventName>(event: T, payload: GarageBuildEventPayload<T>): Promise<void> {
     const promises: Promise<void>[] = [];
 
     const handlers = this.handlers.get(event);
     if (handlers) {
       for (const handler of handlers) {
-        const result = handler(payload as VyomEventPayload<VyomEventName>);
+        const result = handler(payload as GarageBuildEventPayload<GarageBuildEventName>);
         if (result instanceof Promise) promises.push(result);
       }
     }
@@ -164,7 +164,7 @@ export class EventBus {
     const onceHandlers = this.onceHandlers.get(event);
     if (onceHandlers) {
       for (const handler of onceHandlers) {
-        const result = handler(payload as VyomEventPayload<VyomEventName>);
+        const result = handler(payload as GarageBuildEventPayload<GarageBuildEventName>);
         if (result instanceof Promise) promises.push(result);
       }
       this.onceHandlers.delete(event);
@@ -176,15 +176,15 @@ export class EventBus {
   /**
    * Subscribe to an event. Returns an object with an unsubscribe method.
    */
-  on<T extends VyomEventName>(event: T, handler: EventHandler<T>): EventSubscription {
+  on<T extends GarageBuildEventName>(event: T, handler: EventHandler<T>): EventSubscription {
     if (!this.handlers.has(event)) {
       this.handlers.set(event, new Set());
     }
-    this.handlers.get(event)!.add(handler as EventHandler<VyomEventName>);
+    this.handlers.get(event)!.add(handler as EventHandler<GarageBuildEventName>);
 
     return {
       unsubscribe: () => {
-        this.handlers.get(event)?.delete(handler as EventHandler<VyomEventName>);
+        this.handlers.get(event)?.delete(handler as EventHandler<GarageBuildEventName>);
       },
     };
   }
@@ -193,15 +193,15 @@ export class EventBus {
    * Subscribe to an event once. The handler is automatically removed
    * after the first invocation.
    */
-  once<T extends VyomEventName>(event: T, handler: EventHandler<T>): EventSubscription {
+  once<T extends GarageBuildEventName>(event: T, handler: EventHandler<T>): EventSubscription {
     if (!this.onceHandlers.has(event)) {
       this.onceHandlers.set(event, new Set());
     }
-    this.onceHandlers.get(event)!.add(handler as EventHandler<VyomEventName>);
+    this.onceHandlers.get(event)!.add(handler as EventHandler<GarageBuildEventName>);
 
     return {
       unsubscribe: () => {
-        this.onceHandlers.get(event)?.delete(handler as EventHandler<VyomEventName>);
+        this.onceHandlers.get(event)?.delete(handler as EventHandler<GarageBuildEventName>);
       },
     };
   }
@@ -210,7 +210,7 @@ export class EventBus {
    * Remove all handlers for a specific event, or all handlers if no
    * event is specified. Useful for testing and cleanup.
    */
-  removeAllListeners(event?: VyomEventName): void {
+  removeAllListeners(event?: GarageBuildEventName): void {
     if (event) {
       this.handlers.delete(event);
       this.onceHandlers.delete(event);
@@ -224,7 +224,7 @@ export class EventBus {
    * Return the number of handlers registered for an event.
    * Useful for debugging and testing.
    */
-  listenerCount(event: VyomEventName): number {
+  listenerCount(event: GarageBuildEventName): number {
     return (this.handlers.get(event)?.size ?? 0) + (this.onceHandlers.get(event)?.size ?? 0);
   }
 }

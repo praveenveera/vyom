@@ -1,4 +1,4 @@
-# VYOM Manifesto
+# GarageBuild Manifesto
 
 > *AI is temporary. Software is permanent.*
 
@@ -14,7 +14,7 @@ Almost every session eventually led back to the same question:
 
 > "Why can't these tools work together while letting me stay in control?"
 
-That question became VYOM.
+That question became GarageBuild.
 
 Not because AI tools are bad. Many of them are extraordinary.
 
@@ -48,7 +48,7 @@ Instead of asking: *"Which AI model is best?"*
 
 We asked: *"Why isn't there an open platform where any AI model can help me build software?"*
 
-That question became VYOM.
+That question became GarageBuild.
 
 Not another chatbot. Not another IDE. Not another cloud platform.
 
@@ -64,7 +64,7 @@ Today's best model will not be tomorrow's best model. Technology changes. Pricin
 
 But the software you build may live for years. It will outlast every model that helped create it.
 
-**VYOM is never built around today's AI. It is built around software.**
+**GarageBuild is never built around today's AI. It is built around software.**
 
 That single belief explains every architectural decision we've made — the plugin system, the model abstraction layer, the local-first design, the portable project format. None of it is accidental. All of it follows from this.
 
@@ -74,7 +74,7 @@ Today you might use GPT-4o. Tomorrow you might use Claude. Next year something w
 
 Your workflow shouldn't change. Your code shouldn't change. Your infrastructure shouldn't change.
 
-In VYOM, AI providers are plugins. They can be swapped, combined, upgraded or replaced without touching a single line of your project.
+In GarageBuild, AI providers are plugins. They can be swapped, combined, upgraded or replaced without touching a single line of your project.
 
 **The model serves the developer. Not the other way around.**
 
@@ -84,7 +84,7 @@ Your ideas belong to you. Your source code belongs to you. Your infrastructure b
 
 Software should not be held hostage by subscriptions, proprietary runtimes or vendor lock-in.
 
-**Everything VYOM generates is standard source code. No proprietary format. No lock-in. No strings attached.**
+**Everything GarageBuild generates is standard source code. No proprietary format. No lock-in. No strings attached.**
 
 ### AI Should Run Where You Need It
 
@@ -108,7 +108,7 @@ Git survived every IDE that came and went. Docker survived every container runti
 
 They survived because they were open, extensible, and independent of any single vendor.
 
-**VYOM isn't being built around today's AI models. It's being built around openness.**
+**GarageBuild isn't being built around today's AI models. It's being built around openness.**
 
 ---
 
@@ -124,9 +124,9 @@ I don't want to spend my time copying prompts between applications. I don't want
 
 I've spent years building enterprise AI platforms. I know that the most valuable systems are never the ones tied to a single model. They are the ones that abstract complexity, preserve flexibility, and remain useful as technology evolves.
 
-That's why VYOM doesn't exist to compete with ChatGPT, Claude, Gemini, Cursor, or Lovable.
+That's why GarageBuild doesn't exist to compete with ChatGPT, Claude, Gemini, Cursor, or Lovable.
 
-**VYOM exists because software deserves an open foundation — independent of whichever AI model happens to lead the benchmark this year.**
+**GarageBuild exists because software deserves an open foundation — independent of whichever AI model happens to lead the benchmark this year.**
 
 ---
 
@@ -134,7 +134,7 @@ That's why VYOM doesn't exist to compete with ChatGPT, Claude, Gemini, Cursor, o
 
 **Open. Local. Extensible. Private. Developer-first.**
 
-Every architectural decision in VYOM follows from this.
+Every architectural decision in GarageBuild follows from this.
 
 - Plugin-first architecture — because extensibility is non-negotiable.
 - Local-first design — because privacy is non-negotiable.
@@ -161,8 +161,8 @@ We measure success simply:
 
 ---
 
-**VYOM (व्योम)**
+**GarageBuild (व्योम)**
 
 *Build Once. Run Anywhere. Use Any AI. Own Everything.*
 
-[github.com/vyom-dev](https://github.com/vyom-dev) · open source · built in public
+[github.com/garagebuild-dev](https://github.com/garagebuild-dev) · open source · built in public

@@ -1,6 +1,5 @@
 
-> @vyom/plugin-sdk@0.1.0 test
+> @garagebuild/plugin-sdk@0.1.0 test
 > node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --passWithNoTests
 
-[999D[KNo tests found, exiting with code 0
-[999D[K
+No tests found, exiting with code 0

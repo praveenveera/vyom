@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — WorkspaceManager Tests
+// GarageBuild Engine — WorkspaceManager Tests
 // ─────────────────────────────────────────────────────────────────────────────
 import { tmpdir } from 'os';
 import { join } from 'path';
@@ -9,7 +9,7 @@ import { WorkspaceManager } from './workspace-manager.js';
 import { eventBus } from '../event-bus/event-bus.js';
 // Use a temp directory for each test run so tests never share state
 function tempDbPath() {
-    return join(tmpdir(), `vyom-test-${randomUUID()}.db`);
+    return join(tmpdir(), `garagebuild-test-${randomUUID()}.db`);
 }
 describe('WorkspaceManager', () => {
     let manager;
@@ -188,6 +188,36 @@ describe('WorkspaceManager', () => {
             eventBus.on('model.switched', handler);
             manager.setActiveModel(second.id);
             expect(handler).toHaveBeenCalledTimes(1);
+        });
+    });
+    // ── getModelConfig ─────────────────────────────────────────────────────────
+    describe('getModelConfig()', () => {
+        it('returns the model config by id', async () => {
+            await manager.initialize(dbPath);
+            const config = manager.addModelConfig({ provider: 'ollama', modelName: 'llama3', displayName: 'Llama 3', isLocal: true });
+            const retrieved = manager.getModelConfig(config.id);
+            expect(retrieved).toBeDefined();
+            expect(retrieved.id).toBe(config.id);
+            expect(retrieved.modelName).toBe('llama3');
+        });
+        it('throws if model config not found', async () => {
+            await manager.initialize(dbPath);
+            expect(() => manager.getModelConfig('non-existent-id')).toThrow('Model config not found');
+        });
+        it('throws if called before initialize', () => {
+            expect(() => manager.getModelConfig('some-id')).toThrow('not initialized');
+        });
+    });
+    // ── getDb ──────────────────────────────────────────────────────────────────
+    describe('getDb()', () => {
+        it('returns the underlying database connection', async () => {
+            await manager.initialize(dbPath);
+            const db = manager.getDb();
+            expect(db).toBeDefined();
+            expect(db.prepare).toBeDefined();
+        });
+        it('throws if called before initialize', () => {
+            expect(() => manager.getDb()).toThrow('not initialized');
         });
     });
     // ── removeModelConfig ──────────────────────────────────────────────────────

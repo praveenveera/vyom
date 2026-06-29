@@ -1,7 +1,7 @@
 {
-  "name": "@vyom/plugin-sdk",
+  "name": "@garagebuild/plugin-sdk",
   "version": "0.1.0",
-  "description": "VYOM Plugin SDK — interfaces and types for building VYOM plugins",
+  "description": "GarageBuild Plugin SDK — interfaces and types for building GarageBuild plugins",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — Event Bus
+// GarageBuild Engine — Event Bus
 //
 // The internal nervous system. All subsystems communicate through events.
 // No subsystem ever calls another subsystem directly.
@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // ── Event Bus ─────────────────────────────────────────────────────────────────
 /**
- * The VYOM Event Bus.
+ * The GarageBuild Event Bus.
  *
  * Subsystems use this to communicate without coupling to each other.
  * All events are typed — TypeScript will catch unknown event names and

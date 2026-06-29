@@ -263,9 +263,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -379,38 +379,38 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">23x</span>
+<span class="cline-any cline-yes">110x</span>
+<span class="cline-any cline-yes">107x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">110x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// ─────────────────────────────────────────────────────────────────────────────
-// VYOM Engine — Database
+// GarageBuild Engine — Database
 //
-// Sets up the SQLite database at ~/.vyom/data/vyom.db
+// Sets up the SQLite database at ~/.garagebuild/data/garagebuild.db
 // All schema changes must be versioned migrations.
 // ─────────────────────────────────────────────────────────────────────────────
 &nbsp;
@@ -421,16 +421,16 @@ import { join } from 'path';
 &nbsp;
 // ── Paths ─────────────────────────────────────────────────────────────────────
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >getVyomDir(</span>): string {
-<span class="cstat-no" title="statement not covered" >  return join(homedir(), '.vyom');</span>
+export function <span class="fstat-no" title="function not covered" >getGarageBuildDir(</span>): string {
+<span class="cstat-no" title="statement not covered" >  return join(homedir(), '.garagebuild');</span>
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getDataDir(</span>): string {
-<span class="cstat-no" title="statement not covered" >  return join(getVyomDir(), 'data');</span>
+<span class="cstat-no" title="statement not covered" >  return join(getGarageBuildDir(), 'data');</span>
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >getDatabasePath(</span>): string {
-<span class="cstat-no" title="statement not covered" >  return join(getDataDir(), 'vyom.db');</span>
+<span class="cstat-no" title="statement not covered" >  return join(getDataDir(), 'garagebuild.db');</span>
 }
 &nbsp;
 // ── Schema ────────────────────────────────────────────────────────────────────
@@ -545,8 +545,8 @@ const CREATE_TABLES = `
 // ── Database initialisation ───────────────────────────────────────────────────
 &nbsp;
 /**
- * Initialises the VYOM database.
- * Creates ~/.vyom/data/ if it doesn't exist.
+ * Initialises the GarageBuild database.
+ * Creates ~/.garagebuild/data/ if it doesn't exist.
  * Runs schema migrations if needed.
  * Returns an open database connection.
  */
@@ -586,7 +586,7 @@ export function initDatabase(dbPath?: string): Database.Database {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-27T04:02:47.449Z
+                at 2026-06-29T06:37:46.415Z
             </div>
         <script src="../prettify.js"></script>
         <script>

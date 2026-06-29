@@ -1,0 +1,54 @@
+{
+  "name": "garagebuild-vscode",
+  "displayName": "GarageBuild",
+  "description": "AI development platform — VS Code extension",
+  "version": "0.1.0",
+  "publisher": "garagebuild",
+  "repository": "https://github.com/garagebuild/garagebuild",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": ["Other", "Programming Languages", "Machine Learning"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "garagebuild.createProject",
+        "title": "GarageBuild: Create Project"
+      },
+      {
+        "command": "garagebuild.runAgent",
+        "title": "GarageBuild: Run Agent on File"
+      },
+      {
+        "command": "garagebuild.showStatus",
+        "title": "GarageBuild: Show Connection Status"
+      }
+    ],
+    "configuration": {
+      "title": "GarageBuild",
+      "properties": {
+        "garagebuild.serverUrl": {
+          "type": "string",
+          "default": "http://localhost:3000",
+          "description": "URL of the running GarageBuild server"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node ../../node_modules/jest/bin/jest.js --coverage",
+    "clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "@types/node": "^20.0.0",
+    "@types/vscode": "1.85.0",
+    "jest": "^29.0.0",
+    "typescript": "^5.4.0"
+  }
+}

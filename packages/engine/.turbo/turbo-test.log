@@ -1,56 +1,39 @@
 
-> @vyom/engine@0.1.0 test
+> @garagebuild/engine@0.1.0 test
 > node --experimental-vm-modules ../../node_modules/jest/bin/jest.js --coverage
 
-(node:50811) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(node:96981) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
 (Use `node --trace-warnings ...` to show where the warning was created)
 PASS dist/workspace-manager/workspace-manager.test.js
-  WorkspaceManager
-    initialize()
-      ✓ creates a workspace on first run (5 ms)
-      ✓ emits workspace.created on first run (2 ms)
-      ✓ loads existing workspace on subsequent runs (2 ms)
-      ✓ does not emit workspace.created on subsequent runs (2 ms)
-    getWorkspace()
-      ✓ returns the workspace after initialize (2 ms)
-      ✓ throws if called before initialize (5 ms)
-    updateSettings()
-      ✓ merges new settings with existing ones (1 ms)
-      ✓ emits workspace.updated (1 ms)
-      ✓ persists settings across restarts (2 ms)
-    addModelConfig()
-      ✓ adds a model config and returns it (1 ms)
-      ✓ automatically activates the first model added (1 ms)
-      ✓ does not activate subsequent models automatically (1 ms)
-      ✓ emits model.configured (1 ms)
-    listModelConfigs()
-      ✓ returns empty array when no models configured (2 ms)
-      ✓ returns all configured models (1 ms)
-    getActiveModel()
-      ✓ returns undefined when no models configured (1 ms)
-      ✓ returns the active model (2 ms)
-    setActiveModel()
-      ✓ switches the active model (1 ms)
-      ✓ deactivates the previous active model (2 ms)
-      ✓ throws if model id does not exist (1 ms)
-      ✓ emits model.switched (2 ms)
-    removeModelConfig()
-      ✓ removes a model config (1 ms)
-      ✓ activates next model when active model is removed (1 ms)
-      ✓ throws if model id does not exist (2 ms)
+PASS dist/agent-runner/agent-runner.test.js
+PASS dist/file-system/file-system.test.js
+PASS dist/session-manager/session-manager.test.js
+PASS dist/project-manager/project-manager.test.js
+PASS dist/cost-engine/cost-engine.test.js
+-----------------------|---------|----------|---------|---------|---------------------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s               
+-----------------------|---------|----------|---------|---------|---------------------------------
+All files              |   87.57 |    75.78 |   85.32 |   88.55 |                                 
+ agent-runner          |    93.9 |    74.19 |    91.3 |   93.58 |                                 
+  agent-runner.ts      |   94.73 |    73.07 |     100 |   94.73 | 189-192                         
+  built-in-agents.ts   |      92 |       80 |    87.5 |   90.47 | 38-42                           
+ cost-engine           |     100 |      100 |     100 |     100 |                                 
+  cost-engine.ts       |     100 |      100 |     100 |     100 |                                 
+ event-bus             |   38.29 |    21.42 |      50 |      40 |                                 
+  event-bus.ts         |   38.29 |    21.42 |      50 |      40 | 131,138-173,197-204,215-216,228 
+ file-system           |   89.79 |    86.36 |   76.92 |   93.33 |                                 
+  file-system.ts       |   89.79 |    86.36 |   76.92 |   93.33 | 202-208                         
+ project-manager       |   98.18 |    88.88 |     100 |   98.18 |                                 
+  project-manager.ts   |   98.18 |    88.88 |     100 |   98.18 | 166                             
+ session-manager       |   86.15 |       75 |    92.3 |   86.44 |                                 
+  session-manager.ts   |   86.15 |       75 |    92.3 |   86.44 | 219-234                         
+ workspace-manager     |   93.47 |    85.71 |   83.33 |   93.47 |                                 
+  database.ts          |   76.47 |       50 |      25 |   76.47 | 16-24,150                       
+  workspace-manager.ts |   97.33 |    90.32 |     100 |   97.33 | 121,125                         
+-----------------------|---------|----------|---------|---------|---------------------------------
 
-[999D[K-------------------|---------|----------|---------|---------|-------------------
-File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
--------------------|---------|----------|---------|---------|-------------------
-All files          |   72.72 |    66.66 |   66.66 |   73.84 |                   
- event-bus         |   36.17 |    21.42 |    37.5 |   37.77 |                   
-  event-bus.ts     |   36.17 |    21.42 |    37.5 |   37.77 | ...04,215-216,228 
- workspace-manager |   92.94 |    85.29 |   81.25 |   92.94 |                   
-  database.ts      |   76.47 |       50 |      25 |   76.47 | 16-24,150         
-  ...ce-manager.ts |   97.05 |       90 |     100 |   97.05 | 121,125           
--------------------|---------|----------|---------|---------|-------------------
-Test Suites: 1 passed, 1 total
-Tests:       24 passed, 24 total
+Test Suites: 6 passed, 6 total
+Tests:       127 passed, 127 total
 Snapshots:   0 total
-Time:        0.16 s, estimated 1 s
+Time:        1.153 s
 Ran all test suites.

@@ -1,7 +1,7 @@
 {
-  "name": "@vyom/engine",
+  "name": "@garagebuild/engine",
   "version": "0.1.0",
-  "description": "VYOM Engine — the core platform engine",
+  "description": "GarageBuild Engine — the core platform engine",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@vyom/plugin-sdk": "*",
+    "@garagebuild/plugin-sdk": "*",
     "better-sqlite3": "^12.11.1"
   },
   "devDependencies": {
